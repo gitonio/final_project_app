@@ -1,0 +1,14 @@
+<a class="list-group-item">
+    <h4 class="list-group-item-heading">Name: {{ productObject.name}}</h4>
+    <p class="list-group-item-text">
+          Store: {{productObject.affiliate_name}}
+          Store Id: {{productObject.affiliate_id}}
+          Product Id:   {{productObject.id}}
+          Price: {{ productObject.price}}
+          <select ng-model="productObject.currency"><option value="ether">Ether</option><option value="meta">Meta</option></select>
+          <button  ng-click="buyProductFunction({ aproduct : productObject} )">Buy</button>
+          Co-Buyer:
+          <input type="text" id="address" placeholder="0xe0bcf1426c19b511e415c09d48295813ffe375c2" ng-model="newAddress"/>
+          <br>
+    </p>
+</a>

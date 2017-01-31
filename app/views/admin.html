@@ -1,0 +1,41 @@
+
+<fieldset>
+  <legend>Add Project:</legend>
+  <table>
+    <tr>
+        <td><span for="project">Project name:</span></td>
+        <td><input type="text" id="project" placeholder="Wirled Pease" ng-model="newProject"/></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><span for="goal">Goal in ether:</span></td>
+        <td><input type="number" id="goal" placeholder="10" ng-model="newGoal"/></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><span for="id">Deadline in days:</span></td>
+        <td><input type="number" id="id" placeholder="100" ng-model="newDeadline"/></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><span for="name">Address:</span></td>
+        <td><input type="text" id="name" placeholder="0xe0bcf1426c19b511e415c09d48295813ffe375c2" ng-model="newAddress"/></td>
+        <td></td>
+        <td>       <td><button id="addProject" ng-click="addProject(newAddress, newProject, newGoal, newDeadline)">Add</button></td>
+ </td>
+    </tr>
+  </table>
+
+<br>
+
+
+<fieldset>
+    <legend>Project List:</legend>
+<div class="list-group">
+    <admin-projects project-object="project" contribute-function="contribute(aproject.id, aproject.amount)" ng-repeat="project in projects"></admin-projects>
+    </div>
+</fieldset>
+</fieldset>

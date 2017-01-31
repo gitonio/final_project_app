@@ -1,0 +1,8 @@
+<a class="list-group-item">
+    <h4 class="list-group-item-heading">Name: {{ affiliateObject.name}}</h4>
+    <p class="list-group-item-text">
+          Affiliate Id:   {{affiliateObject.id}}
+          Address: {{ affiliateObject.address}}
+          <button id="deleteAffiliate" ng-click="deleteAffiliateFunction( {an_affiliate: affiliateObject} )">Delete</button><br>
+    </p>
+</a>

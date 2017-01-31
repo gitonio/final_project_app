@@ -1,0 +1,33 @@
+
+<fieldset>
+  <legend>Add Affiliate:</legend>
+  <table>
+    <tr>
+        <td><span for="id">Id:</span></td>
+        <td><input type="number" id="id" placeholder="1" ng-model="newId"/></td>
+        <td></td>
+        <td></td>
+    </tr>
+     <tr>
+        <td><span for="name">Name:</span></td>
+         <td><input type="text" id="name" placeholder="Walmart" ng-model="newName"/></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+         <td><span for="adress">Adress:</span></td>
+       <td><input type="text" id="address" placeholder="0xe0bcf1426c19b511e415c09d48295813ffe375c2" ng-model="newAddress"/></td>
+       <td><button id="addAffiliate" ng-click="addAffiliate(newId, newName, newAddress)">Add</button></td>
+   </tr>
+  </table>
+</fieldset>
+<br>
+
+<fieldset>
+    <legend>Affiliate List:</legend>
+
+    <div class="list-group">
+    <admin-affiliates affiliate-object="affiliate" delete-affiliate-function="deleteAffiliate(an_affiliate.id)" ng-repeat="affiliate in affiliates"></admin-affiliates>
+    </div>
+
+</fieldset>
