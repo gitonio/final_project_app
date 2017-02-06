@@ -91,9 +91,10 @@ contract('FundingHub', function(accounts) {
         })
         .then(function(){
             blockNumber = web3.eth.blockNumber + 1;
-            return project.refund();
+            return project.refund({from:accounts[1], gas:300000});
         })
         .then(function (txnHash) {
+            
       	    return Promise.all([
 	    		      getEventsPromise(project.logRefund(
 	    			    {},
@@ -103,7 +104,7 @@ contract('FundingHub', function(accounts) {
         })
         .then(function (receipt) {
             console.log(receipt);
-            assert.equal(web3.eth.getBalance(pa),0,"Project balance wasnt refunded.");
+            assert.equal(web3.eth.getBalance(pa).toNumber(),0,"Project balance wasnt refunded.");
         })
 
     });
