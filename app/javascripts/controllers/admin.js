@@ -1,6 +1,12 @@
 var app = angular.module("fundingHubApp");
 
-app.controller("AdminController", function($scope, $timeout, $q, projectListService){
+/*
+app.config(function ($locationProvider) {
+  $locationProvider.html5Mode(true);
+});
+*/
+
+app.controller("AdminController", function( $scope, $timeout, $q, projectListService){
 	console.log("AdminController");
 	console.log(projectListService);
 	$scope.accounts = web3.eth.accounts;
@@ -72,6 +78,7 @@ app.controller("AdminController", function($scope, $timeout, $q, projectListServ
 			});
 	};
 
+/*
 	FundingHub.deployed().projects(5).then( function(pr){
 		console.log(pr);
 		return Project.at(pr).Funding({},{fromBlock: 0, toBlock: 'latest'});
@@ -82,6 +89,7 @@ app.controller("AdminController", function($scope, $timeout, $q, projectListServ
         		console.log(result);
 		});
 	});
+*/
 
 
 

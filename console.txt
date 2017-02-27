@@ -1,3 +1,60 @@
-curl -d '{"jsonrpc":"2.0","method":"eth_sendTransaction","params": [{"from":"0xa0e8f1dbd8a196edcae634cacb1dfe5a64104daf", "to":"0xF7575D0AF7Bf6d56fF6fe22afB9e3DE59707A707", "value": 1e18}], "id":1}' -X POST http://localhost:8545/
 
-web3.eth.sendTransaction({from:web3.eth.coinbase, to:"0xF7575D0AF7Bf6d56fF6fe22afB9e3DE59707A707", value: web3.toWei(0.05, "ether")})
+web3.eth.sendTransaction({from: web3.eth.accounts[0], to: web3.eth.accounts[1], value: web3.toWei(1, "ether")});
+
+
+web3.eth.sendTransaction({from: "0xf00b4fb5bbbfb5f7255a1d5ce99f1178da3359d0", to: web3.eth.accounts[1], value: web3.toWei(1, "ether")});
+
+var result;
+SmallContract.deployed().getBalance.call(web3.eth.accounts[0]).then(function (newResult) { result = newResult; }).catch(function (e){console.error(e); });
+SmallContract.deployed().contract.getBalance.call(web3.eth.accounts[0], function (err, newResult) { result = newResult; console.error(err); })
+
+#Send to contract
+var txn = web3.eth.sendTransaction({ from: web3.eth.coinbase, to: SmallContract.deployed().address,value: web3.toWei(11, "wei") })
+
+SmallContract.deployed().getBalanceA.call()
+SmallContract.deployed().getBalance.call()
+SmallContract.deployed().getAccountA.call()
+SmallContract.deployed().getAccountB.call()
+
+#Get list of accounts
+web3.eth.getAccounts(function(err, accs) { console.log(accs);})
+web3.eth.getAccounts(function(err, accs) { console.log('Accounts'); for (var i = 0; i < accs.length; i++) { console.log( i + ': ' + accs[i] + '   ' + web3.eth.getBalance(accs[i]) );}})
+SmallContract.deployed().setAccountA.call('0x42dd0a77aca4689dcd8877c775fac11722351049')
+web3.eth.getBalance('0x359dd97861e69a61dbd41c16a7bc4810d09d8fb7')
+web3.eth.getBalance('0x6159259099a0e76d7b5737c3dc38eadc0c5f0320')
+web3.eth.getBalance('0x13b1391f0ee4e3d4fdb45f47cf7c0e49ffe03651')
+
+
+
+rm  /home/antonio/.ethereum/net42/chaindata/*
+
+ geth --datadir /home/antonio/.ethereum/net42 init /home/antonio/.ethereum/net42/genesis42.json
+
+
+geth --datadir ~/.ethereum/net42 --networkid 42 --rpc --rpcport 8545 --rpcaddr 0.0.0.0 --rpccorsdomain "*" --mine --unlock="0x17a69073094b811abe610922c36f037d843f7151, 0xa8fd64294fb52dc52decb80a19387efd6651c37a, 0x5de800b7195bee8d01cb6124c47312f50616b1cd" --password "./pw.txt" --rpcapi "eth,web3,personal" console
+
+geth --datadir ~/.ethereum/net42 --networkid '42' --ipcpath ~/.ethereum/net42/geth.ipc --rpc --rpcport 8545 --rpcaddr 0.0.0.0 --rpccorsdomain "*" --mine --unlock="0x17a69073094b811abe610922c36f037d843f7151, 0xa8fd64294fb52dc52decb80a19387efd6651c37a, 0x5de800b7195bee8d01cb6124c47312f50616b1cd, 0x224fe19fda680a11ef3084d0f6c9beb5bc694573" --password "./pw.txt" --rpcapi "eth,web3,personal" --maxpeers=0 console
+
+geth --datadir ~/.ethereum/net14658 --networkid 14658
+
+geth --datadir ~/.ethereum/net14658 --networkid 14658 --rpc --rpcport 8545 --rpcaddr 0.0.0.0 --rpccorsdomain "*" --mine --unlock="0x5bd1041438ffc9910d5f7c96d6ef8c3d774a03c9, 0xe16f32b8e1bc9f75deffe3a7286317939721c667, 0x288457fea0d00cc1bc591aa522ed177186eba193" --password "./pw.txt" --rpcapi "eth,web3,personal" console
+
+Mist --rpc localhost:8545
+
+
+antonio@antonio-VirtualBox:~/DAPPS/small_project$ geth attach ipc:/home/antonio/.ethereum/net14658/geth.ipc
+
+
+antonio@antonio-VirtualBox:~/DAPPS/small_project$ truffle migrate --network net14658
+Running migration: 1_initial_migration.js
+  Replacing Migrations...
+  Migrations: 0x2b986d2ab4caba4ad23b874e1af8cb6bded840b7
+Saving successful migration to network...
+Saving artifacts...
+Running migration: 2_deploy_contracts.js
+  Replacing SmallContract...
+  SmallContract: 0xfd6ad4ca9e7e0db0ed2b222de81cbc0d4917604c
+Saving successful migration to network...
+Saving artifacts...
+
+

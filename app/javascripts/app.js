@@ -2,6 +2,7 @@ var app = angular.module('fundingHubApp', ['ngRoute']);
 console.log('app');
 
 
+
 app.config(function($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'views/admin.html',
@@ -15,6 +16,7 @@ app.config(function($routeProvider) {
   .otherwise({redirectTo: '/'});
 });
 
+
 app.service('projectListService',function($q, $timeout){
 	accounts = web3.eth.accounts;
 	console.log('web3');
@@ -25,11 +27,13 @@ app.service('projectListService',function($q, $timeout){
     var self = this;
 	var project;
 
+    console.log(FundingHub.at('0x50cb65b0fd1ce1bfcfe198f874c9c4a65800ce34'));
 	this.collectProjects = function() {
 		console.log('Collecting projects');
 		FundingHub.deployed().count.call()
 			.then(function (count) {
 				console.log('Begin count');
+				console.log('FH address:'+FundingHub.deployed().address);
 				console.log('Count projects:'+count.valueOf());
 				if (count.valueOf() > 0) {
 					for (var i = 0; i < count.valueOf(); i++) {
